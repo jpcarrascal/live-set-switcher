@@ -16,7 +16,6 @@ struct ContentView: View {
     @Binding var midiInSelectedDisplayName: String
     @Binding var bigTitleDisplayed: Bool
     @Binding var midiChannelSelectedID: Int32
-    //Binding var currentLiveSet : LiveSet
     
     var body: some View {
         
@@ -46,7 +45,7 @@ struct ContentView: View {
             .padding(5)
             
             GroupBox(label: Text("Live Set")) {
-                LiveSetSelectionView()//currentLiveSet: $currentLiveSet)
+                LiveSetSelectionView()
             }
             .padding(5)
             

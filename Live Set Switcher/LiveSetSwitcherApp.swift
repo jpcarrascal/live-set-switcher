@@ -22,7 +22,6 @@ struct EndpointPickersApp: App {
     @State var midiInSelectedID: MIDI.IO.UniqueID = 0
     @State var midiInSelectedDisplayName: String = "None"
     @State var bigTitleDisplayed: Bool = false
-    //@State var currentLiveSet: LiveSet = LiveSet(id: -1, pcNumber: -1, name: "", location: "")
     
     @State var midiChannelSelectedID: Int32 = 0
     
@@ -44,7 +43,6 @@ struct EndpointPickersApp: App {
                 midiInSelectedDisplayName: $midiInSelectedDisplayName,
                 bigTitleDisplayed: $bigTitleDisplayed,
                 midiChannelSelectedID: $midiChannelSelectedID
-                //currentLiveSet: $currentLiveSet
             )
             .environmentObject(midiManager)
             .environmentObject(midiHelper)

@@ -1,18 +1,7 @@
 //
-//  MIDIEndpointSelectionView.swift
-//  EndpointPickers
-//  MIDIKit • https://github.com/orchetect/MIDIKit
 //
 
 import SwiftUI
-import MIDIKit
-/*
-struct SongListView: View {
-    
- 
-    
-}
-*/
 
 struct LiveSet: Identifiable {
     let id: Int
@@ -29,10 +18,8 @@ struct LiveSetSelectionView: View {
         LiveSet(id: 3, pcNumber: 3, name: "Track 3", location: "/Users/jp/Desktop/03 Project/03.als")
     ]
     @State var selection : LiveSet.ID?
-    @State private var showRow = false
     
-    @State var currentLiveSet: LiveSet = LiveSet(id: -1, pcNumber: -1, name: "", location: "")
-    //@Binding var currentLiveSet: LiveSet
+    @State private var currentLiveSet: LiveSet = LiveSet(id: -1, pcNumber: -1, name: "", location: "")
 
     var body: some View {
         Table(liveSets, selection: $selection) {
@@ -76,7 +63,10 @@ struct LiveSetSelectionView: View {
         }
     }
     
-    public func loadSet() {
+    public func loadSet(pc: Int32? = nil) {
+        if(pc != nil) {
+            selectSet(pc: pc!)
+        }
         if(currentLiveSet.id >= 0) {
             let app = "/Applications/Ableton Live 11 Suite.app"
             let file = currentLiveSet.location

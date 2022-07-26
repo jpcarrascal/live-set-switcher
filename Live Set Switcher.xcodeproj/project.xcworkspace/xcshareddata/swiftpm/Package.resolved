@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "midikit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/orchetect/MIDIKit",
+      "state" : {
+        "revision" : "bbc2fb1845a71b9bd3c9ed8e4baececb37b273ac",
+        "version" : "0.5.1"
+      }
+    },
+    {
+      "identity" : "swiftradix",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/orchetect/SwiftRadix",
+      "state" : {
+        "revision" : "467ea909bce637049fe2b6ccf1494886efcdf1e8",
+        "version" : "1.1.0"
+      }
+    }
+  ],
+  "version" : 2
+}

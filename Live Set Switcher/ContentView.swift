@@ -43,7 +43,7 @@ struct ContentView: View {
             .padding(5)
             
             GroupBox(label: Text("Live Set")) {
-                LiveSetSelectionView()
+                SetSelectView()
             }
             .padding(5)
             

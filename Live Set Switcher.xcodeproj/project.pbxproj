@@ -14,7 +14,8 @@
 		E86054A0288C4E0100A98189 /* MIDIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E860549F288C4E0100A98189 /* MIDIKit */; };
 		E86054A2288C5C3700A98189 /* MIDISelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A1288C5C3700A98189 /* MIDISelectView.swift */; };
 		E86054A4288C5C8500A98189 /* MIDIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A3288C5C8500A98189 /* MIDIHelper.swift */; };
-		E86054A6288DBC9D00A98189 /* LiveSetSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A5288DBC9D00A98189 /* LiveSetSelectionView.swift */; };
+		E86054A6288DBC9D00A98189 /* SetSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A5288DBC9D00A98189 /* SetSelectView.swift */; };
+		E8A27F7728914ADA00BB8484 /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A27F7628914ADA00BB8484 /* SetList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +27,8 @@
 		E8605498288C4B0F00A98189 /* Live_Set_Switcher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Live_Set_Switcher.entitlements; sourceTree = "<group>"; };
 		E86054A1288C5C3700A98189 /* MIDISelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDISelectView.swift; sourceTree = "<group>"; };
 		E86054A3288C5C8500A98189 /* MIDIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIHelper.swift; sourceTree = "<group>"; };
-		E86054A5288DBC9D00A98189 /* LiveSetSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSetSelectionView.swift; sourceTree = "<group>"; };
+		E86054A5288DBC9D00A98189 /* SetSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSelectView.swift; sourceTree = "<group>"; };
+		E8A27F7628914ADA00BB8484 /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,8 @@
 			children = (
 				E860548F288C4B0800A98189 /* LiveSetSwitcherApp.swift */,
 				E86054A1288C5C3700A98189 /* MIDISelectView.swift */,
-				E86054A5288DBC9D00A98189 /* LiveSetSelectionView.swift */,
+				E86054A5288DBC9D00A98189 /* SetSelectView.swift */,
+				E8A27F7628914ADA00BB8484 /* SetList.swift */,
 				E8605491288C4B0800A98189 /* ContentView.swift */,
 				E86054A3288C5C8500A98189 /* MIDIHelper.swift */,
 				E8605493288C4B0F00A98189 /* Assets.xcassets */,
@@ -158,9 +161,10 @@
 			files = (
 				E8605492288C4B0800A98189 /* ContentView.swift in Sources */,
 				E86054A2288C5C3700A98189 /* MIDISelectView.swift in Sources */,
+				E8A27F7728914ADA00BB8484 /* SetList.swift in Sources */,
 				E86054A4288C5C8500A98189 /* MIDIHelper.swift in Sources */,
 				E8605490288C4B0800A98189 /* LiveSetSwitcherApp.swift in Sources */,
-				E86054A6288DBC9D00A98189 /* LiveSetSelectionView.swift in Sources */,
+				E86054A6288DBC9D00A98189 /* SetSelectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

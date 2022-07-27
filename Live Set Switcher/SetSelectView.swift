@@ -10,7 +10,7 @@ struct LiveSet: Identifiable {
     var location: String
 }
 
-struct LiveSetSelectionView: View {
+struct SetSelectView: View {
     @State private var liveSets = [
         LiveSet(id: 0, pcNumber: 0, name: "Track 0", location: "/Users/jp/Desktop/00 Project/00.als"),
         LiveSet(id: 1, pcNumber: 1, name: "Track 1", location: "/Users/jp/Desktop/01 Project/01.als"),

@@ -17,9 +17,9 @@ struct LiveSetSelectionView: View {
         LiveSet(id: 2, pcNumber: 2, name: "Track 2", location: "/Users/jp/Desktop/02 Project/02.als"),
         LiveSet(id: 3, pcNumber: 3, name: "Track 3", location: "/Users/jp/Desktop/03 Project/03.als")
     ]
-    @State var selection : LiveSet.ID?
+    @State private var selection : LiveSet.ID?
     
-    @State private var currentLiveSet: LiveSet = LiveSet(id: -1, pcNumber: -1, name: "", location: "")
+    @State var currentLiveSet: LiveSet = LiveSet(id: -1, pcNumber: -1, name: "", location: "")
     
     @EnvironmentObject var midiHelper: MIDIHelper
 
@@ -27,7 +27,7 @@ struct LiveSetSelectionView: View {
         Table(liveSets, selection: $selection) {
             TableColumn("PCnum") { liveSet in
                 Text(String(liveSet.pcNumber))
-            }
+            }.width(ideal: 1)
             TableColumn("Name") { liveSet in
                 //TextEditor(text: $liveSets[liveSet.id-1].name)
                 Text(String(liveSet.name))
@@ -45,8 +45,10 @@ struct LiveSetSelectionView: View {
         }.onChange(of: selection) { value in
             currentLiveSet = liveSets[selection!]
         }
-        Text(setText(theText: currentLiveSet.name))
-        Text(midiHelper.receivedPC)
+        HStack {
+            Text(setText(theText: currentLiveSet.name))
+            Text(loadSetFromPC(pc: midiHelper.receivedPC))
+        }
         
         Button("Load Live Set") {
             loadSet()
@@ -58,7 +60,19 @@ struct LiveSetSelectionView: View {
 
     }
     
-    public func selectSet(pc: Int32) {
+    private func loadSetFromPC(pc: Int32) -> String {
+        if(pc < 0) {
+            return "";
+        } else {
+            //DispatchQueue.main.async {
+            //selectSet(pc: pc)
+            print("Coming from MIDIhelper: " + String(pc))
+            return "(PC: " + String(pc) + ")";
+        }
+    }
+    
+    private func selectSet(pc: Int32) {
+        print("Selecting " + String(pc))
         for liveSet in liveSets {
             if(liveSet.pcNumber == pc) {
                 self.selection = liveSet.id
@@ -66,7 +80,7 @@ struct LiveSetSelectionView: View {
         }
     }
     
-    public func loadSet(pc: Int32? = nil) {
+    private func loadSet(pc: Int32? = nil) {
         if(pc != nil) {
             selectSet(pc: pc!)
         }
@@ -80,7 +94,7 @@ struct LiveSetSelectionView: View {
         }
     }
     
-    func setText(theText: String) -> String {
+    private func setText(theText: String) -> String {
         if(theText == "") {
             return "No set selected";
         } else {

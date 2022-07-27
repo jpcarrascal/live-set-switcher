@@ -29,8 +29,6 @@ struct ContentView: View {
             */
             GroupBox(label: Text("MIDI Input")) {
                 
-                Text("Live sets will be selected when receiving Program Change (PC) messages coming from:")
-                
                 MIDIInSelectionView(
                     midiInSelectedID: $midiInSelectedID,
                     midiInSelectedDisplayName: $midiInSelectedDisplayName

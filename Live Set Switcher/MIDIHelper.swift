@@ -12,7 +12,7 @@ class MIDIHelper: ObservableObject {
     
     @Published
     public private(set) var receivedEvents: [MIDI.Event] = []
-    public var receivedPC: Int = -1
+    public private(set) var receivedPC: Int32 = -1
     
     public init(channel: Int32) {
         self.channel = channel
@@ -95,7 +95,7 @@ class MIDIHelper: ObservableObject {
                       "\n  Channel:", payload.channel.intValue,
                       "\n  UMP Group (MIDI2):", payload.group.intValue)
                  */
-                receivedPC = payload.program.intValue
+                receivedPC = Int32(payload.program.intValue)
                 print("OPENING... " + String(payload.program.intValue))
                 self.receivedEvents.append(event)
             } else {

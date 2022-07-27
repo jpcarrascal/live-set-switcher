@@ -20,6 +20,8 @@ struct LiveSetSelectionView: View {
     @State var selection : LiveSet.ID?
     
     @State private var currentLiveSet: LiveSet = LiveSet(id: -1, pcNumber: -1, name: "", location: "")
+    
+    @EnvironmentObject var midiHelper: MIDIHelper
 
     var body: some View {
         Table(liveSets, selection: $selection) {
@@ -44,6 +46,7 @@ struct LiveSetSelectionView: View {
             currentLiveSet = liveSets[selection!]
         }
         Text(setText(theText: currentLiveSet.name))
+        Text(midiHelper.receivedPC)
         
         Button("Load Live Set") {
             loadSet()

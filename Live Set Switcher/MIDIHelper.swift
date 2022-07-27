@@ -12,6 +12,7 @@ class MIDIHelper: ObservableObject {
     
     @Published
     public private(set) var receivedEvents: [MIDI.Event] = []
+    public var receivedPC: Int = -1
     
     public init(channel: Int32) {
         self.channel = channel
@@ -94,11 +95,8 @@ class MIDIHelper: ObservableObject {
                       "\n  Channel:", payload.channel.intValue,
                       "\n  UMP Group (MIDI2):", payload.group.intValue)
                  */
-                if(payload.program.intValue == 1) {
-                    //LiveSetSelectionView.selectSet(payload.program.intValue)
-                    print("OPENING...")
-                    
-                }
+                receivedPC = payload.program.intValue
+                print("OPENING... " + String(payload.program.intValue))
                 self.receivedEvents.append(event)
             } else {
                 print("PC coming from different channel: ", payload.channel.intValue)

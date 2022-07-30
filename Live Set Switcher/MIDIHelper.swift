@@ -9,6 +9,7 @@ class MIDIHelper: ObservableObject {
     
     public weak var midiManager: MIDI.IO.Manager?
     private var channel: Int32
+    @ObservedObject var setList = SetList()
     
     @Published
     public private(set) var receivedEvents: [MIDI.Event] = []
@@ -88,7 +89,7 @@ class MIDIHelper: ObservableObject {
     private func handleMIDI(event: MIDI.Event) {
         switch event {
         case .programChange(let payload):
-            if(payload.channel.intValue == self.channel) {
+            if(payload.channel.intValue == self.channel || self.channel < 0) {
                 /*print("Program Change:",
                       "\n  Program:", payload.program.intValue,
                       "\n  Bank Select:", payload.bank,
@@ -96,14 +97,17 @@ class MIDIHelper: ObservableObject {
                       "\n  UMP Group (MIDI2):", payload.group.intValue)
                  */
                 receivedPC = Int32(payload.program.intValue)
-                print("OPENING... " + String(payload.program.intValue))
+                setList.selectSet(pc: receivedPC, send: true)
+                //print("OPENING... " + String(payload.program.intValue))
                 self.receivedEvents.append(event)
             } else {
                 print("PC coming from different channel: ", payload.channel.intValue)
             }
+            break
 
         default:
-            print("NON-PC message")
+            break
+            //print("")
         }
     }
 }

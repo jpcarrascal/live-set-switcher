@@ -49,6 +49,7 @@ struct MIDIChannelSelectionView: View {
     var body: some View {
         
         Picker("Channel", selection: $midiChannelSelectedID) {
+                Text("[Any]").tag(Int32(-1))
             ForEach((0...15), id: \.self) {
                 Text("\($0+1)").tag(Int32($0))
             }

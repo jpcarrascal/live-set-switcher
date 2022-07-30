@@ -64,9 +64,9 @@
 			children = (
 				E860548F288C4B0800A98189 /* LiveSetSwitcherApp.swift */,
 				E86054A1288C5C3700A98189 /* MIDISelectView.swift */,
+				E8605491288C4B0800A98189 /* ContentView.swift */,
 				E86054A5288DBC9D00A98189 /* SetSelectView.swift */,
 				E8A27F7628914ADA00BB8484 /* SetList.swift */,
-				E8605491288C4B0800A98189 /* ContentView.swift */,
 				E86054A3288C5C8500A98189 /* MIDIHelper.swift */,
 				E8605493288C4B0F00A98189 /* Assets.xcassets */,
 				E8605498288C4B0F00A98189 /* Live_Set_Switcher.entitlements */,

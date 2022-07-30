@@ -18,6 +18,7 @@ struct EndpointPickersApp: App {
     )
     
     @ObservedObject var midiHelper = MIDIHelper(channel: 0)
+    @ObservedObject var setList = SetList()
     
     @State var midiInSelectedID: MIDI.IO.UniqueID = 0
     @State var midiInSelectedDisplayName: String = "None"
@@ -46,6 +47,7 @@ struct EndpointPickersApp: App {
             )
             .environmentObject(midiManager)
             .environmentObject(midiHelper)
+            .environmentObject(setList)
             .frame(minWidth: 400, minHeight: 600, alignment: .center)
         }
         

@@ -5,7 +5,6 @@
 //  Created by jp on 7/27/22.
 //
 
-import Foundation
 import SwiftUI
 
 struct LiveSet: Identifiable {
@@ -18,7 +17,7 @@ struct LiveSet: Identifiable {
 class SetList: ObservableObject {
     
     //@Published var selection : LiveSet.ID?
-    @State var selection : LiveSet.ID? = -1
+    @Published public var selection : LiveSet.ID? = -1
     
     public private(set) var liveSets = [
         LiveSet(id: 0, pcNumber: 0, name: "Track 0", location: "/Users/jp/Desktop/00 Project/00.als"),
@@ -45,6 +44,7 @@ class SetList: ObservableObject {
             if(liveSet.pcNumber == pc) {
                 currentLiveSet = liveSet
                 selection = currentLiveSet.id
+                print("Selection: " + String(selection!))
                 print("Selecting " + String(pc))
                 if (send) { loadSet(pc: pc) }
                 return

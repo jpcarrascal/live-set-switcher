@@ -10,7 +10,7 @@ struct SetSelectView: View {
     //@StateObject var setList = SetList()
     @EnvironmentObject var setList: SetList
     
-    //@State private var selection : LiveSet.ID?
+    @State private var selection : LiveSet.ID?
 
     var body: some View {
         Table(setList.liveSets, selection: $setList.selection) {

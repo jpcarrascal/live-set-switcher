@@ -19,7 +19,7 @@ class SetList: ObservableObject {
     //@Published var selection : LiveSet.ID?
     @Published public var selection : LiveSet.ID? = -1
     
-    public private(set) var liveSets = [
+    public var liveSets = [
         LiveSet(id: 0, pcNumber: 0, name: "Track 0", location: "/Users/jp/Desktop/00 Project/00.als"),
         LiveSet(id: 1, pcNumber: 1, name: "Track 1", location: "/Users/jp/Desktop/01 Project/01.als"),
         LiveSet(id: 2, pcNumber: 2, name: "Track 2", location: "/Users/jp/Desktop/02 Project/02.als"),
@@ -68,3 +68,4 @@ class SetList: ObservableObject {
         }
     }
 }
+

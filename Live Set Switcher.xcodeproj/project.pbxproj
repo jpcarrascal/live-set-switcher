@@ -16,6 +16,7 @@
 		E86054A4288C5C8500A98189 /* MIDIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A3288C5C8500A98189 /* MIDIHelper.swift */; };
 		E86054A6288DBC9D00A98189 /* SetSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A5288DBC9D00A98189 /* SetSelectView.swift */; };
 		E8A27F7728914ADA00BB8484 /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A27F7628914ADA00BB8484 /* SetList.swift */; };
+		E8F5919A2896EC2A000151A1 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = E8F591992896EC2A000151A1 /* SwiftCSV */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E86054A0288C4E0100A98189 /* MIDIKit in Frameworks */,
+				E8F5919A2896EC2A000151A1 /* SwiftCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +103,7 @@
 			name = "Live Set Switcher";
 			packageProductDependencies = (
 				E860549F288C4E0100A98189 /* MIDIKit */,
+				E8F591992896EC2A000151A1 /* SwiftCSV */,
 			);
 			productName = "Live Set Switcher";
 			productReference = E860548C288C4B0800A98189 /* Live Set Switcher.app */;
@@ -132,6 +135,7 @@
 			mainGroup = E8605483288C4B0800A98189;
 			packageReferences = (
 				E860549E288C4E0100A98189 /* XCRemoteSwiftPackageReference "MIDIKit" */,
+				E8F591982896EC2A000151A1 /* XCRemoteSwiftPackageReference "SwiftCSV" */,
 			);
 			productRefGroup = E860548D288C4B0800A98189 /* Products */;
 			projectDirPath = "";
@@ -370,6 +374,14 @@
 				minimumVersion = 0.5.1;
 			};
 		};
+		E8F591982896EC2A000151A1 /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -377,6 +389,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E860549E288C4E0100A98189 /* XCRemoteSwiftPackageReference "MIDIKit" */;
 			productName = MIDIKit;
+		};
+		E8F591992896EC2A000151A1 /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8F591982896EC2A000151A1 /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

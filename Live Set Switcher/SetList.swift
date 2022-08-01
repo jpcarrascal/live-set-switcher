@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LiveSet: Identifiable {
+struct LiveSet: Identifiable, Codable {
     let id: Int
     var pcNumber: Int32
     var name: String
@@ -19,15 +19,21 @@ class SetList: ObservableObject {
     //@Published var selection : LiveSet.ID?
     @Published public var selection : LiveSet.ID? = -1
     
-    public var liveSets = [
-        LiveSet(id: 0, pcNumber: 0, name: "Track 0", location: "/Users/jp/Desktop/00 Project/00.als"),
+    public var liveSets = [LiveSet]()
+/*        LiveSet(id: 0, pcNumber: 0, name: "Track 0", location: "/Users/jp/Desktop/00 Project/00.als"),
         LiveSet(id: 1, pcNumber: 1, name: "Track 1", location: "/Users/jp/Desktop/01 Project/01.als"),
         LiveSet(id: 2, pcNumber: 2, name: "Track 2", location: "/Users/jp/Desktop/02 Project/02.als"),
         LiveSet(id: 3, pcNumber: 3, name: "Track 3", location: "/Users/jp/Desktop/03 Project/03.als")
     ]
-    
+  */
     @Published var currentLiveSet: LiveSet = LiveSet(id: -1, pcNumber: -1, name: "", location: "")
 
+    init (){
+        if let data = UserDefaults.standard.value(forKey:"setList") as? Data {
+            liveSets = try! PropertyListDecoder().decode(Array<LiveSet>.self, from: data)
+        }
+    }
+    
     public func loadSetFromPC(pc: Int32) -> String {
         if(pc < 0) {
             return "";
@@ -44,8 +50,8 @@ class SetList: ObservableObject {
             if(liveSet.pcNumber == pc) {
                 currentLiveSet = liveSet
                 selection = currentLiveSet.id
-                print("Selection: " + String(selection!))
-                print("Selecting " + String(pc))
+                //print("Selection: " + String(selection!))
+                //print("Selecting " + String(pc))
                 if (send) { loadSet(pc: pc) }
                 return
             }

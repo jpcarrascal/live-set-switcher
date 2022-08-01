@@ -13,12 +13,11 @@ struct SetSelectView: View {
     
     @State private var selection : LiveSet.ID?
     
-    @State var filename = ""
+    @State var filename = " "
 
     var body: some View {
         
         HStack {
-          Text(filename)
           Button("Load Set List...")
           {
             let panel = NSOpenPanel()
@@ -30,17 +29,20 @@ struct SetSelectView: View {
                     let csvData: CSV = try CSV<Named>(url: URL(fileURLWithPath: filename))
                     setList.liveSets = []
                     var index = 0
+                    var pcn = ""
                     csvData.rows.forEach{ elem in
-                        var pcn = elem["pc"]!
+                        pcn = elem["pc"]!
                         var set = LiveSet(id: index, pcNumber: Int32(pcn) ?? -1, name: elem["name"]!, location: elem["location"]!)
                         setList.liveSets.append(set)
                         index += 1
                     }
+                    UserDefaults.standard.set(try? PropertyListEncoder().encode(setList.liveSets), forKey:"setList")
                 } catch let error {
                     print(error)
                 }
             }
           }
+            Text(filename)
         }
         
         Table(setList.liveSets, selection: $setList.selection) {
@@ -62,7 +64,7 @@ struct SetSelectView: View {
             }
             TableColumn("Location", value: \.location)
         }.onChange(of: setList.selection) { value in
-            print("CHanging list selection: " + String(setList.liveSets[setList.selection!].pcNumber))
+            print("Changing list selection: " + String(setList.liveSets[setList.selection!].pcNumber))
             setList.selectSet(pc: setList.liveSets[setList.selection!].pcNumber, send: false)
         }
         HStack {

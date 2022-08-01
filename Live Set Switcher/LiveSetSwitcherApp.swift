@@ -80,7 +80,6 @@ enum ConnectionTags {
 enum UserDefaultsKeys {
     static let midiInID = "SelectedMIDIInID"
     static let midiInDisplayName = "SelectedMIDIInDisplayName"
-    
     static let midiChannelID = "SelectedMIDIChannelID"
 }
 
@@ -109,7 +108,6 @@ extension EndpointPickersApp {
                                   forKey: UserDefaultsKeys.midiInID)
         UserDefaults.standard.set(midiInSelectedDisplayName,
                                   forKey: UserDefaultsKeys.midiInDisplayName)
-        
         UserDefaults.standard.set(midiChannelSelectedID,
                                   forKey: UserDefaultsKeys.midiChannelID)
     }

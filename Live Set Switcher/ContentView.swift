@@ -46,13 +46,14 @@ struct ContentView: View {
                 SetSelectView()
             }
             .padding(5)
-            
+            /*
             GroupBox(label: Text("Received Events")) {
                 List(midiHelper.receivedEvents.reversed(), id: \.self) {
                     Text($0.description)
                         .foregroundColor(color(for: $0))
                 }
             }
+             */
             
         }
         .multilineTextAlignment(.center)

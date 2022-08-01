@@ -64,13 +64,17 @@ struct SetSelectView: View {
             }
             TableColumn("Location", value: \.location)
         }.onChange(of: setList.selection) { value in
-            print("Changing list selection: " + String(setList.liveSets[setList.selection!].pcNumber))
-            setList.selectSet(pc: setList.liveSets[setList.selection!].pcNumber, send: false)
+            let index = setList.selection ?? -1
+            if(index >= 0) {
+                print("Changing list selection: " + String(setList.liveSets[index].pcNumber))
+                setList.selectSet(pc: setList.liveSets[index].pcNumber, send: false)
+                print("--->" + String(setList.liveSets[index].name))
+            }
         }
         HStack {
             Text(setText(theText: setList.currentLiveSet.name))
             Text(String(midiHelper.receivedPC))
-            Text(">>>" + String(setList.selection!))
+//            Text(">>>" + String(setList.selection!))
         }
         
         Button("Load Live Set") {

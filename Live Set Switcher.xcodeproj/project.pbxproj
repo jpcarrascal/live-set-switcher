@@ -15,6 +15,7 @@
 		E86054A2288C5C3700A98189 /* MIDISelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A1288C5C3700A98189 /* MIDISelectView.swift */; };
 		E86054A4288C5C8500A98189 /* MIDIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A3288C5C8500A98189 /* MIDIHelper.swift */; };
 		E86054A6288DBC9D00A98189 /* SetSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A5288DBC9D00A98189 /* SetSelectView.swift */; };
+		E86201A92898FA4100D38F7B /* BigNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86201A82898FA4100D38F7B /* BigNameView.swift */; };
 		E8A27F7728914ADA00BB8484 /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A27F7628914ADA00BB8484 /* SetList.swift */; };
 		E8F5919A2896EC2A000151A1 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = E8F591992896EC2A000151A1 /* SwiftCSV */; };
 /* End PBXBuildFile section */
@@ -29,6 +30,7 @@
 		E86054A1288C5C3700A98189 /* MIDISelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDISelectView.swift; sourceTree = "<group>"; };
 		E86054A3288C5C8500A98189 /* MIDIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIHelper.swift; sourceTree = "<group>"; };
 		E86054A5288DBC9D00A98189 /* SetSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetSelectView.swift; sourceTree = "<group>"; };
+		E86201A82898FA4100D38F7B /* BigNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigNameView.swift; sourceTree = "<group>"; };
 		E8A27F7628914ADA00BB8484 /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +70,7 @@
 				E86054A1288C5C3700A98189 /* MIDISelectView.swift */,
 				E8605491288C4B0800A98189 /* ContentView.swift */,
 				E86054A5288DBC9D00A98189 /* SetSelectView.swift */,
+				E86201A82898FA4100D38F7B /* BigNameView.swift */,
 				E8A27F7628914ADA00BB8484 /* SetList.swift */,
 				E86054A3288C5C8500A98189 /* MIDIHelper.swift */,
 				E8605493288C4B0F00A98189 /* Assets.xcassets */,
@@ -169,6 +172,7 @@
 				E86054A4288C5C8500A98189 /* MIDIHelper.swift in Sources */,
 				E8605490288C4B0800A98189 /* LiveSetSwitcherApp.swift in Sources */,
 				E86054A6288DBC9D00A98189 /* SetSelectView.swift in Sources */,
+				E86201A92898FA4100D38F7B /* BigNameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

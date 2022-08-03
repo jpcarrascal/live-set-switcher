@@ -42,7 +42,6 @@ struct EndpointPickersApp: App {
             ContentView(
                 midiInSelectedID: $midiInSelectedID,
                 midiInSelectedDisplayName: $midiInSelectedDisplayName,
-                bigTitleDisplayed: $bigTitleDisplayed,
                 midiChannelSelectedID: $midiChannelSelectedID
             )
             .environmentObject(midiManager)

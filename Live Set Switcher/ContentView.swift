@@ -14,7 +14,6 @@ struct ContentView: View {
     
     @Binding var midiInSelectedID: MIDI.IO.UniqueID
     @Binding var midiInSelectedDisplayName: String
-    @Binding var bigTitleDisplayed: Bool
     @Binding var midiChannelSelectedID: Int32
     
     var body: some View {

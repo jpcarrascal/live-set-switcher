@@ -13,8 +13,6 @@ struct SetSelectView: View {
     @State private var selection : LiveSet.ID?
     
     @State var filename = " "
-    
-    @State var showBigName = false
 
     var body: some View {
         ZStack {
@@ -79,14 +77,6 @@ struct SetSelectView: View {
         //            Text(">>>" + String(setList.selection!))
                 }
                 
-                Button(action: {
-                    if(setList.currentLiveSet.id >= 0) {
-                        self.showBigName.toggle()
-                    }
-                }) {
-                    Text("Big Name")
-                }
-                
                 Button("Load Live Set") {
                     setList.loadSet()
                 }
@@ -96,9 +86,6 @@ struct SetSelectView: View {
                 }
             }
         
-            if self.showBigName {
-                BigNameView(showBigName: self.$showBigName, name: $setList.currentLiveSet.name)
-            }
         }
 
     }

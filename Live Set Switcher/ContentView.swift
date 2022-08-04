@@ -11,54 +11,70 @@ struct ContentView: View {
     
     @EnvironmentObject var midiManager: MIDI.IO.Manager
     @EnvironmentObject var midiHelper: MIDIHelper
+    @EnvironmentObject var setList: SetList
     
     @Binding var midiInSelectedID: MIDI.IO.UniqueID
     @Binding var midiInSelectedDisplayName: String
     @Binding var midiChannelSelectedID: Int32
     
+    @State var showBigName = false
+    
     var body: some View {
-        
-        VStack {
-            /*
-            Group {
-                Text("Ableton Live set selector")
-            }
-            .font(.system(size: 14))
-            .padding(5)
-            */
-            GroupBox(label: Text("MIDI Input")) {
-                
-                MIDIInSelectionView(
-                    midiInSelectedID: $midiInSelectedID,
-                    midiInSelectedDisplayName: $midiInSelectedDisplayName
-                )
-                .padding([.leading, .trailing], 60)
-                
-                MIDIChannelSelectionView(
-                    midiChannelSelectedID: $midiChannelSelectedID
-                )
-                .padding([.leading, .trailing], 60)
-            }
-            .padding(5)
-            
-            GroupBox(label: Text("Live Set")) {
-                SetSelectView()
-            }
-            .padding(5)
-            /*
-            GroupBox(label: Text("Received Events")) {
-                List(midiHelper.receivedEvents.reversed(), id: \.self) {
-                    Text($0.description)
-                        .foregroundColor(color(for: $0))
+        ZStack{
+            VStack {
+
+                GroupBox(label: Text("MIDI Input")) {
+                    
+                    MIDIInSelectionView(
+                        midiInSelectedID: $midiInSelectedID,
+                        midiInSelectedDisplayName: $midiInSelectedDisplayName
+                    )
+                    .padding([.leading, .trailing], 60)
+                    
+                    MIDIChannelSelectionView(
+                        midiChannelSelectedID: $midiChannelSelectedID
+                    )
+                    .padding([.leading, .trailing], 60)
                 }
+                .padding(5)
+                
+                GroupBox(label: Text("Live Set")) {
+                    SetSelectView()
+                }
+                .padding(5)
+                /*
+                GroupBox(label: Text("Received Events")) {
+                    List(midiHelper.receivedEvents.reversed(), id: \.self) {
+                        Text($0.description)
+                            .foregroundColor(color(for: $0))
+                    }
+                }
+                 */
+                
+                Button(action: {
+                    if(setList.currentLiveSet.id >= 0) {
+                        self.showBigName.toggle()
+                    }
+                }) {
+                    Text("Big Name")
+                }
+                
+                Button(action: {
+                            OpenWindows.SecondView.open()
+                       }){
+                            Text("Open Second Window")
+                         }
+                
             }
-             */
+            .multilineTextAlignment(.center)
+            .lineLimit(nil)
+            .padding()
+            
+            if self.showBigName {
+                BigNameView(showBigName: self.$showBigName, name: $setList.currentLiveSet.name)
+            }
             
         }
-        .multilineTextAlignment(.center)
-        .lineLimit(nil)
-        .padding()
-        
     }
         
     func color(for event: MIDI.Event) -> Color? {
@@ -71,5 +87,4 @@ struct ContentView: View {
         }
     }
     
-}
-
+} 

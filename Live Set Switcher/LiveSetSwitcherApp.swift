@@ -9,7 +9,7 @@ import SwiftUI
 import MIDIKit
 
 @main
-struct EndpointPickersApp: App {
+struct LiveSetSwitcher: App {
     
     let midiManager = MIDI.IO.Manager(
         clientName: "Spacebarman",
@@ -48,6 +48,9 @@ struct EndpointPickersApp: App {
             .environmentObject(midiHelper)
             .environmentObject(setList)
             .frame(minWidth: 400, minHeight: 600, alignment: .center)
+            .onAppear {
+                NSWindow.allowsAutomaticWindowTabbing = false
+            }
         }
         
         .onChange(of: midiInSelectedID) {
@@ -68,6 +71,17 @@ struct EndpointPickersApp: App {
             midiSavePersistentState()
         }
         
+        .commands { CommandGroup(replacing: .newItem, addition: { }) }
+        
+        WindowGroup("Big Name") {
+            BigNameView2()
+                .onAppear {
+                    NSWindow.allowsAutomaticWindowTabbing = false
+                }
+        }.handlesExternalEvents(matching: Set(arrayLiteral: "SecondWindow"))
+        
+        .commands { CommandGroup(replacing: .newItem, addition: { }) }
+        
     }
     
 }
@@ -82,7 +96,7 @@ enum UserDefaultsKeys {
     static let midiChannelID = "SelectedMIDIChannelID"
 }
 
-extension EndpointPickersApp {
+extension LiveSetSwitcher {
     
     /// This should only be run once at app startup.
     private mutating func midiRestorePersistentState() {
@@ -111,4 +125,14 @@ extension EndpointPickersApp {
                                   forKey: UserDefaultsKeys.midiChannelID)
     }
     
+}
+
+enum OpenWindows: String, CaseIterable {
+    case SecondView = "SecondWindow"
+
+    func open(){
+        if let url = URL(string: "LiveSetSwitcher://\(self.rawValue)") { //replace myapp with your app's name
+            NSWorkspace.shared.open(url)
+        }
+    }
 }

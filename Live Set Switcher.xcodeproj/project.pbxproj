@@ -75,12 +75,12 @@
 				E8605491288C4B0800A98189 /* ContentView.swift */,
 				E86054A5288DBC9D00A98189 /* SetSelectView.swift */,
 				E86201A82898FA4100D38F7B /* BigNameView.swift */,
+				E8A9491C289BA3BC00E17B6F /* BigNameView2.swift */,
 				E8A27F7628914ADA00BB8484 /* SetList.swift */,
 				E86054A3288C5C8500A98189 /* MIDIHelper.swift */,
 				E8605493288C4B0F00A98189 /* Assets.xcassets */,
 				E8605498288C4B0F00A98189 /* Live_Set_Switcher.entitlements */,
 				E8605495288C4B0F00A98189 /* Preview Content */,
-				E8A9491C289BA3BC00E17B6F /* BigNameView2.swift */,
 			);
 			path = "Live Set Switcher";
 			sourceTree = "<group>";

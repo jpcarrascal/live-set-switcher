@@ -22,6 +22,9 @@ struct BigNameView: View {
                 //Divider()
                 Button(action: {
                     self.showBigName.toggle()
+                    for window in NSApplication.shared.windows {
+                        window.level = .normal
+                    }
                 } ) {
                     Text("Close")
                         //.foregroundColor(.blue)

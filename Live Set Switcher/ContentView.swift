@@ -54,16 +54,21 @@ struct ContentView: View {
                 Button(action: {
                     if(setList.currentLiveSet.id >= 0) {
                         self.showBigName.toggle()
+                        for window in NSApplication.shared.windows {
+                            window.level = .floating
+                        }
                     }
                 }) {
                     Text("Big Name")
                 }
                 
+                /*
                 Button(action: {
                             OpenWindows.SecondView.open()
                        }){
                             Text("Open Second Window")
                          }
+                 */
                 
             }
             .multilineTextAlignment(.center)

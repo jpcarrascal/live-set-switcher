@@ -73,15 +73,6 @@ struct LiveSetSwitcher: App {
         
         .commands { CommandGroup(replacing: .newItem, addition: { }) }
         
-        WindowGroup("Big Name") {
-            BigNameView2()
-                .onAppear {
-                    NSWindow.allowsAutomaticWindowTabbing = false
-                }
-        }.handlesExternalEvents(matching: Set(arrayLiteral: "SecondWindow"))
-        
-        .commands { CommandGroup(replacing: .newItem, addition: { }) }
-        
     }
     
 }
@@ -127,12 +118,3 @@ extension LiveSetSwitcher {
     
 }
 
-enum OpenWindows: String, CaseIterable {
-    case SecondView = "SecondWindow"
-
-    func open(){
-        if let url = URL(string: "LiveSetSwitcher://\(self.rawValue)") { //replace myapp with your app's name
-            NSWorkspace.shared.open(url)
-        }
-    }
-}

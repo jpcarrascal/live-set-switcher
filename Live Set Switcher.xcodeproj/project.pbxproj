@@ -17,7 +17,6 @@
 		E86054A6288DBC9D00A98189 /* SetSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86054A5288DBC9D00A98189 /* SetSelectView.swift */; };
 		E86201A92898FA4100D38F7B /* BigNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86201A82898FA4100D38F7B /* BigNameView.swift */; };
 		E8A27F7728914ADA00BB8484 /* SetList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A27F7628914ADA00BB8484 /* SetList.swift */; };
-		E8A9491D289BA3BC00E17B6F /* BigNameView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9491C289BA3BC00E17B6F /* BigNameView2.swift */; };
 		E8F5919A2896EC2A000151A1 /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = E8F591992896EC2A000151A1 /* SwiftCSV */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		E86201A82898FA4100D38F7B /* BigNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigNameView.swift; sourceTree = "<group>"; };
 		E8A27F7628914ADA00BB8484 /* SetList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetList.swift; sourceTree = "<group>"; };
 		E8A9491B289BA2F900E17B6F /* Live-Set-Switcher-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Live-Set-Switcher-Info.plist"; sourceTree = SOURCE_ROOT; };
-		E8A9491C289BA3BC00E17B6F /* BigNameView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNameView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +73,6 @@
 				E8605491288C4B0800A98189 /* ContentView.swift */,
 				E86054A5288DBC9D00A98189 /* SetSelectView.swift */,
 				E86201A82898FA4100D38F7B /* BigNameView.swift */,
-				E8A9491C289BA3BC00E17B6F /* BigNameView2.swift */,
 				E8A27F7628914ADA00BB8484 /* SetList.swift */,
 				E86054A3288C5C8500A98189 /* MIDIHelper.swift */,
 				E8605493288C4B0F00A98189 /* Assets.xcassets */,
@@ -176,7 +173,6 @@
 				E8A27F7728914ADA00BB8484 /* SetList.swift in Sources */,
 				E86054A4288C5C8500A98189 /* MIDIHelper.swift in Sources */,
 				E8605490288C4B0800A98189 /* LiveSetSwitcherApp.swift in Sources */,
-				E8A9491D289BA3BC00E17B6F /* BigNameView2.swift in Sources */,
 				E86054A6288DBC9D00A98189 /* SetSelectView.swift in Sources */,
 				E86201A92898FA4100D38F7B /* BigNameView.swift in Sources */,
 			);

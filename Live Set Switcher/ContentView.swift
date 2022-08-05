@@ -62,14 +62,6 @@ struct ContentView: View {
                     Text("Big Name")
                 }
                 
-                /*
-                Button(action: {
-                            OpenWindows.SecondView.open()
-                       }){
-                            Text("Open Second Window")
-                         }
-                 */
-                
             }
             .multilineTextAlignment(.center)
             .lineLimit(nil)

@@ -13,6 +13,13 @@ struct SetSelectView: View {
     var body: some View {
         ZStack {
             VStack {
+                HStack {
+                    Button("Load Set List...")
+                    {
+                        setList.loadSetlist()
+                    }
+                    Spacer()
+                }
                 
                 Table(setList.liveSets, selection: $setList.selection) {
                     TableColumn("PCnum") { liveSet in
@@ -30,9 +37,12 @@ struct SetSelectView: View {
                 }
 
                 VStack {
+                    /*
                     Text("Selected set:")
                     
                     Text(setList.currentLiveSet.name).font(.system(size: 25)).opacity(setOpacity(theText: setList.currentLiveSet.name))
+                     */
+
                 }
 
             }

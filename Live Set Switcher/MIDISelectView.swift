@@ -17,7 +17,7 @@ struct MIDIInSelectionView: View {
     
     var body: some View {
         
-        Picker("Port", selection: $midiInSelectedID) {
+        Picker("Input port", selection: $midiInSelectedID) {
             Text("None")
                 .tag(0 as MIDI.IO.UniqueID)
             

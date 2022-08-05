@@ -20,7 +20,7 @@ struct BigNameView: View {
                 Text(name)
                     .font(.system(size: 150))
                     .multilineTextAlignment(.center)
-                
+                /*
                 Divider()
                 
                 Button(action: {
@@ -31,9 +31,11 @@ struct BigNameView: View {
                 } ) {
                     Text("Close")
                 }
+                 */
                 
             }//vstack
 
         }//zstack
+
     }
 }

@@ -9,11 +9,9 @@ class MIDIHelper: ObservableObject {
     
     public weak var midiManager: MIDI.IO.Manager?
     private var channel: Int32
-    @ObservedObject var setList = SetList()
     
-    @Published
-    public private(set) var receivedEvents: [MIDI.Event] = []
-    public private(set) var receivedPC: Int32 = -1
+    @Published public private(set) var receivedEvents: [MIDI.Event] = []
+    @Published public private(set) var receivedPC: Int32 = -1
     
     public init(channel: Int32) {
         self.channel = channel
@@ -96,10 +94,8 @@ class MIDIHelper: ObservableObject {
                       "\n  Channel:", payload.channel.intValue,
                       "\n  UMP Group (MIDI2):", payload.group.intValue)
                  */
-                receivedPC = Int32(payload.program.intValue)
-                setList.selectSet(pc: receivedPC, send: true)
-                //print("OPENING... " + String(payload.program.intValue))
-                self.receivedEvents.append(event)
+                self.receivedPC = Int32(payload.program.intValue)
+                //self.receivedEvents.append(event)
             } else {
                 print("PC coming from different channel: ", payload.channel.intValue)
             }

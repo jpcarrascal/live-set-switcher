@@ -21,6 +21,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack{
+            
             VStack {
 
                 GroupBox(label: Text("MIDI Input")) {
@@ -50,19 +51,29 @@ struct ContentView: View {
                     }
                 }
                  */
-                
-                Button(action: {
-                    if(setList.currentLiveSet.id >= 0) {
+                HStack {
+                    
+                    Button("Open with Live") {
+                        setList.loadSet()
+                    }.disabled(setList.currentLiveSet.id < 0)
+                    
+                    Button("Load Set List...")
+                    {
+                        setList.loadSetlist()
+                    }
+                    
+                    Button(action: {
                         self.showBigName.toggle()
                         for window in NSApplication.shared.windows {
                             window.level = .floating
                         }
+                    }) {
+                        Text("Show Big Name")
                     }
-                }) {
-                    Text("Big Name")
-                }
+                    
+                } //Hstack
                 
-            }
+            } // Vstack
             .multilineTextAlignment(.center)
             .lineLimit(nil)
             .padding()
@@ -71,7 +82,7 @@ struct ContentView: View {
                 BigNameView(showBigName: self.$showBigName, name: $setList.currentLiveSet.name)
             }
             
-        }
+        } // ZStack
     }
         
     func color(for event: MIDI.Event) -> Color? {

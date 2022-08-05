@@ -22,9 +22,8 @@ struct LiveSetSwitcher: App {
     
     @State var midiInSelectedID: MIDI.IO.UniqueID = 0
     @State var midiInSelectedDisplayName: String = "None"
-    @State var bigTitleDisplayed: Bool = false
-    
     @State var midiChannelSelectedID: Int32 = 0
+    
     
     init() {
         midiHelper.midiManager = midiManager

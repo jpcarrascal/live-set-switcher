@@ -11,6 +11,8 @@ import MIDIKit
 @main
 struct LiveSetSwitcher: App {
     
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     let midiManager = MIDI.IO.Manager(
         clientName: "Spacebarman",
         model: "LiveSetSwitcher",

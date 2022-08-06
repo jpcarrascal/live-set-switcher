@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80AA60D289E59910020E62E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80AA60C289E59910020E62E /* AppDelegate.swift */; };
+		E80AA611289E61B60020E62E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E80AA610289E61B60020E62E /* Credits.rtf */; };
 		E8605490288C4B0800A98189 /* LiveSetSwitcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E860548F288C4B0800A98189 /* LiveSetSwitcherApp.swift */; };
 		E8605492288C4B0800A98189 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8605491288C4B0800A98189 /* ContentView.swift */; };
 		E8605494288C4B0F00A98189 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8605493288C4B0F00A98189 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E80AA60C289E59910020E62E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E80AA610289E61B60020E62E /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		E860548C288C4B0800A98189 /* Live Set Switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Live Set Switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E860548F288C4B0800A98189 /* LiveSetSwitcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSetSwitcherApp.swift; sourceTree = "<group>"; };
 		E8605491288C4B0800A98189 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				E8A9491B289BA2F900E17B6F /* Live-Set-Switcher-Info.plist */,
+				E80AA60C289E59910020E62E /* AppDelegate.swift */,
 				E860548F288C4B0800A98189 /* LiveSetSwitcherApp.swift */,
 				E86054A1288C5C3700A98189 /* MIDISelectView.swift */,
 				E8605491288C4B0800A98189 /* ContentView.swift */,
@@ -78,6 +83,7 @@
 				E8605493288C4B0F00A98189 /* Assets.xcassets */,
 				E8605498288C4B0F00A98189 /* Live_Set_Switcher.entitlements */,
 				E8605495288C4B0F00A98189 /* Preview Content */,
+				E80AA610289E61B60020E62E /* Credits.rtf */,
 			);
 			path = "Live Set Switcher";
 			sourceTree = "<group>";
@@ -157,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8605497288C4B0F00A98189 /* Preview Assets.xcassets in Resources */,
+				E80AA611289E61B60020E62E /* Credits.rtf in Resources */,
 				E8605494288C4B0F00A98189 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E80AA60D289E59910020E62E /* AppDelegate.swift in Sources */,
 				E8605492288C4B0800A98189 /* ContentView.swift in Sources */,
 				E86054A2288C5C3700A98189 /* MIDISelectView.swift in Sources */,
 				E8A27F7728914ADA00BB8484 /* SetList.swift in Sources */,
@@ -231,7 +239,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -285,7 +293,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;

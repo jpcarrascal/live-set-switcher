@@ -14,50 +14,51 @@ struct MIDIInSelectionView: View {
     
     @Binding var midiInSelectedID: MIDI.IO.UniqueID
     @Binding var midiInSelectedDisplayName: String
-    
-    var body: some View {
-        
-        Picker("Input port", selection: $midiInSelectedID) {
-            Text("None")
-                .tag(0 as MIDI.IO.UniqueID)
-            
-            if midiInSelectedID != 0,
-               !midiHelper.isOutputPresentInSystem(uniqueID: midiInSelectedID)
-            {
-                Text("⚠️ " + midiInSelectedDisplayName)
-                    .tag(midiInSelectedID)
-                    .foregroundColor(.secondary)
-            }
-            
-            ForEach(midiManager.endpoints.outputs) {
-                Text($0.displayName)
-                    .tag($0.uniqueID)
-            }
-        }
-        
-    }
-    
-}
-
-struct MIDIChannelSelectionView: View {
-    
-    @EnvironmentObject var midiManager: MIDI.IO.Manager
-    @EnvironmentObject var midiHelper: MIDIHelper
-    
     @Binding var midiChannelSelectedID: Int32
     
     var body: some View {
         
-        Picker("Channel", selection: $midiChannelSelectedID) {
-                Text("[Any]").tag(Int32(-1))
-            ForEach((0...15), id: \.self) {
-                Text("\($0+1)").tag(Int32($0))
+        VStack {
+            
+            VStack {
+                HStack {
+                    Text("Will listen to MIDI Program Change (PC) messages coming in through this Port and Channel:")
+                        .multilineTextAlignment(.leading)
+                        .opacity(0.5)
+                    Spacer()
+                }
             }
+            
+            VStack {
+            
+                Picker("Input port", selection: $midiInSelectedID) {
+                    Text("None")
+                        .tag(0 as MIDI.IO.UniqueID)
+                    
+                    if midiInSelectedID != 0,
+                       !midiHelper.isOutputPresentInSystem(uniqueID: midiInSelectedID)
+                    {
+                        Text("⚠️ " + midiInSelectedDisplayName)
+                            .tag(midiInSelectedID)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    ForEach(midiManager.endpoints.outputs) {
+                        Text($0.displayName)
+                            .tag($0.uniqueID)
+                    }
+                }
+                
+                Picker("Channel", selection: $midiChannelSelectedID) {
+                        Text("[Any]").tag(Int32(-1))
+                    ForEach((0...15), id: \.self) {
+                        Text("\($0+1)").tag(Int32($0))
+                    }
+                }
+            }//.padding([.leading, .trailing], 60)
         }
         
     }
     
 }
-
-
 

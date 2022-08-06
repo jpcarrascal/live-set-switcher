@@ -20,18 +20,6 @@ struct BigNameView: View {
                 Text(name)
                     .font(.system(size: 150))
                     .multilineTextAlignment(.center)
-                /*
-                Divider()
-                
-                Button(action: {
-                    self.showBigName.toggle()
-                    for window in NSApplication.shared.windows {
-                        window.level = .normal
-                    }
-                } ) {
-                    Text("Close")
-                }
-                 */
                 
             }//vstack
 

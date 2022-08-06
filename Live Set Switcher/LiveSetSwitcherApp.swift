@@ -72,7 +72,13 @@ struct LiveSetSwitcher: App {
             midiSavePersistentState()
         }
         
-        .commands { CommandGroup(replacing: .newItem, addition: { }) }
+        .commands {
+            CommandGroup(replacing: .newItem, addition: { })
+            CommandGroup(replacing: CommandGroupPlacement.newItem) {}
+            CommandGroup(replacing: CommandGroupPlacement.help) {
+
+            }
+        }
         
     }
     

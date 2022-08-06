@@ -13,11 +13,23 @@ struct SetSelectView: View {
     var body: some View {
         ZStack {
             VStack {
+                
+                VStack {
+                    HStack {
+                        Text("A CSV file with columns: pc,name,location:\n- pc:\t\tMIDI Program Change value\n- name:\t\tDisplay name for the set\n- location:\tlocation of the .als file")
+                            .multilineTextAlignment(.leading)
+                            .opacity(0.5)
+                        Spacer()
+                    }
+                }
+                
                 HStack {
+
                     Button("Load Set List...")
                     {
                         setList.loadSetlist()
                     }
+                    
                     Spacer()
                 }
                 
@@ -34,15 +46,6 @@ struct SetSelectView: View {
                     if(index >= 0) {
                         setList.selectSet(pc: setList.liveSets[index].pcNumber, load: false)
                     }
-                }
-
-                VStack {
-                    /*
-                    Text("Selected set:")
-                    
-                    Text(setList.currentLiveSet.name).font(.system(size: 25)).opacity(setOpacity(theText: setList.currentLiveSet.name))
-                     */
-
                 }
 
             }

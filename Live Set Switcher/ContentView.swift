@@ -28,18 +28,14 @@ struct ContentView: View {
                     
                     MIDIInSelectionView(
                         midiInSelectedID: $midiInSelectedID,
-                        midiInSelectedDisplayName: $midiInSelectedDisplayName
-                    )
-                    .padding([.leading, .trailing], 60)
-                    
-                    MIDIChannelSelectionView(
+                        midiInSelectedDisplayName: $midiInSelectedDisplayName,
                         midiChannelSelectedID: $midiChannelSelectedID
                     )
-                    .padding([.leading, .trailing], 60)
+                    
                 }
                 .padding(5)
                 
-                GroupBox(label: Text("Live Set")) {
+                GroupBox(label: Text("Set List")) {
                     SetSelectView()
                 }
                 .padding(5)
@@ -67,7 +63,9 @@ struct ContentView: View {
             
             Button("Open with Live") {
                 setList.loadSet()
-            }.disabled(setList.currentLiveSet.id < 0)
+            }
+            .disabled(setList.currentLiveSet.id < 0)
+            .keyboardShortcut(.defaultAction)
             
             Button(action: {
                 self.showBigName.toggle()
@@ -79,7 +77,7 @@ struct ContentView: View {
                     Text("Show Big Name")
                 }
                 
-            }
+            }.keyboardShortcut(.cancelAction)
             
         } //Hstack
         .multilineTextAlignment(.center)

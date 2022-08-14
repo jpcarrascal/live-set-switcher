@@ -22,7 +22,7 @@ struct MIDIInSelectionView: View {
             
             VStack {
                 HStack {
-                    Text("Will listen to MIDI Program Change (PC) messages coming in through this Port and Channel:")
+                    Text("Listening for MIDI Program Change (PC) messages coming in through this Port and Channel:")
                         .multilineTextAlignment(.leading)
                         .opacity(0.5)
                     Spacer()
@@ -31,7 +31,7 @@ struct MIDIInSelectionView: View {
             
             VStack {
             
-                Picker("Input port", selection: $midiInSelectedID) {
+                Picker("Port", selection: $midiInSelectedID) {
                     Text("None")
                         .tag(0 as MIDI.IO.UniqueID)
                     

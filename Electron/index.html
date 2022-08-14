@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Ableton Live Set Switcher</title>
+    <link rel="stylesheet" href="renderer.css">
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    Ableton Live Set Switcher
+
+
+    <div class="controls device-select-control">
+      <label for="devices" class="devices-label">Port</label>
+      <select name="devices" class="device-select" id="select-midi-in">
+        <option value="0">None</option>
+      </select>
+    </div>
+
+    <div class="controls device-select-control">
+      <label for="channel" class="devices-label">Channel</label>
+      <select name="channel" class="device-select" id="select-midi-channel">
+        <option value="0">1</option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+        <option value="4">5</option>
+        <option value="5">6</option>
+        <option value="6">7</option>
+        <option value="7">8</option>
+        <option value="8">9</option>
+        <option value="9">10</option>
+        <option value="10">11</option>
+        <option value="11">12</option>
+        <option value="12">13</option>
+        <option value="13">14</option>
+        <option value="14">15</option>
+        <option value="15">16</option>
+      </select>
+    </div>
+    <div>
+      <button id="open-csv">Load Set List...</button>
+      <table id="set-list">
+        <tr>
+          <th>PC</th>
+          <th>Name</th>
+          <th>Location</th>
+        </tr>
+        <tbody id="set-list-body"></tbody>
+      </table>
+    </div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

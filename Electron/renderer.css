@@ -1,0 +1,13 @@
+html {
+    font-size: 14px;
+    font-family: -apple-system, Helvetica;
+}
+
+*, a, button {
+    cursor: default;
+    user-select: none;
+}
+
+.grey-row {
+    background-color: #EEE;
+}

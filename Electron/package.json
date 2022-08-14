@@ -1,0 +1,26 @@
+{
+  "name": "live-set-switcher-electron",
+  "version": "0.1.0",
+  "description": "Ableton Live Set Switcher",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [
+    "ableton",
+    "live",
+    "utility",
+    "playlist"
+  ],
+  "author": "JP Carrascal",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^20.0.2"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "csv-parser": "^3.0.0",
+    "electron-json-storage": "^4.5.0"
+  }
+}

@@ -195,3 +195,6 @@ dist
 # TernJS port file
 .tern-port
 
+#############################################
+# Built packages:
+Ableton Live Set Switcher-darwin-x64

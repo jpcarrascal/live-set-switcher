@@ -2,7 +2,7 @@
   "name": "live-set-switcher-electron",
   "version": "0.1.0",
   "description": "Ableton Live Set Switcher",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
@@ -16,7 +16,8 @@
   "author": "JP Carrascal",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^20.0.2"
+    "electron": "^20.0.2",
+    "electron-packager": "^15.5.1"
   },
   "dependencies": {
     "child_process": "^1.0.2",

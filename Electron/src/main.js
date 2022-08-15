@@ -8,6 +8,7 @@ const path = require('path');
 const csv = require('csv-parser');
 const fs = require('fs');
 const reset = false;
+const debug = false;
 let win;
 
 
@@ -28,6 +29,14 @@ const template = [
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
 
+app.setAboutPanelOptions({
+  applicationName: "Ableton Live Set Switcher", 
+  applicationVersion: "0.1",
+  version: "0.1",
+  credits: "Coded by JP Carrascal\n\nLiked this app?\nThen listen to my band Spacebarman:\nhttp://www.spacebarman.com\nThank you!",
+  copyright: ""
+});
+
 app.whenReady().then(() => {
 
   if(reset) {
@@ -37,21 +46,20 @@ app.whenReady().then(() => {
   }
 
   win = new BrowserWindow({
-    width: 800,
+    width: 400,
     height: 625,
     minWidth: 400,
     minHeight: 625,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      //preload: path.join(__dirname, 'renderer.js')
     },
     titleBarStyle: 'hidden-inset'
   })
 
   win.setMenu(null);;
-  win.loadFile('index.html')
-  //win.webContents.openDevTools()
+  win.loadFile(path.join(__dirname, 'index.html'))
+  if (debug) win.webContents.openDevTools()
 
   win.webContents.on('did-finish-load', function () {
     recoverSetting('setlist', win);

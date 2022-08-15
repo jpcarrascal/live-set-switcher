@@ -8,48 +8,84 @@
     <link rel="stylesheet" href="renderer.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    Ableton Live Set Switcher
+    <div id="big-name">
+      <p id="big-name-text">[No set selected]</p>
+    </div>
+    <div id="top">
+      <p class="section-title">MIDI input</p>
 
+      <div class="section">
+        
+        <p class="hint">
+          Listening for MIDI Program Change (PC) messages coming in through this Port and Channel:
+        </p>
 
-    <div class="controls device-select-control">
-      <label for="devices" class="devices-label">Port</label>
-      <select name="devices" class="device-select" id="select-midi-in">
-        <option value="0">None</option>
-      </select>
+        <div class="picker">
+          <label for="devices" class="devices-label">Port</label>
+          <select name="devices" class="device-select" id="select-midi-in">
+            <option value="0">None</option>
+          </select>
+        </div>
+
+        <div class="picker">
+          <label for="channel" class="devices-label">Channel</label>
+          <select name="channel" class="device-select" id="select-midi-channel">
+            <option value="0">1</option>
+            <option value="1">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+            <option value="4">5</option>
+            <option value="5">6</option>
+            <option value="6">7</option>
+            <option value="7">8</option>
+            <option value="8">9</option>
+            <option value="9">10</option>
+            <option value="10">11</option>
+            <option value="11">12</option>
+            <option value="12">13</option>
+            <option value="13">14</option>
+            <option value="14">15</option>
+            <option value="15">16</option>
+          </select>
+        </div>
+
+      </div>
+
+      <p class="section-title">Set List</p>
+      <div class="section">
+
+        <p class="hint">
+          A CSV file with columns: pc,name,location:<br />
+          - pc:&#9;&#9;MIDI Program Change value<br />
+          - name:&#9;&#9;Display name for the set<br />
+          - location:&#9;location of the .als file
+        </p>
+
+        <div>
+          <button id="open-csv">Load Set List...</button>
+
+          <div id="table-container">
+            <table id="set-list">
+              <thead>
+                <tr>
+                  <th class="pc-col">PCnum</th>
+                  <th class="name-col">Name</th>
+                  <th class="location-col">Location</th>
+                </tr>
+              </thead>
+
+              <tbody id="set-list-body"></tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="controls device-select-control">
-      <label for="channel" class="devices-label">Channel</label>
-      <select name="channel" class="device-select" id="select-midi-channel">
-        <option value="0">1</option>
-        <option value="1">2</option>
-        <option value="2">3</option>
-        <option value="3">4</option>
-        <option value="4">5</option>
-        <option value="5">6</option>
-        <option value="6">7</option>
-        <option value="7">8</option>
-        <option value="8">9</option>
-        <option value="9">10</option>
-        <option value="10">11</option>
-        <option value="11">12</option>
-        <option value="12">13</option>
-        <option value="13">14</option>
-        <option value="14">15</option>
-        <option value="15">16</option>
-      </select>
-    </div>
-    <div>
-      <button id="open-csv">Load Set List...</button>
-      <table id="set-list">
-        <tr>
-          <th>PC</th>
-          <th>Name</th>
-          <th>Location</th>
-        </tr>
-        <tbody id="set-list-body"></tbody>
-      </table>
+    <div id="bottom">
+      <button id="open-live">Open with Live</button>
+      <button id="show-big-name">Show Big Name</button>
     </div>
 
     <script src="renderer.js"></script>

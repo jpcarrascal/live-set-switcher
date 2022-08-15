@@ -7,10 +7,8 @@ const nativeTheme = electron.nativeTheme;
 const path = require('path');
 const csv = require('csv-parser');
 const fs = require('fs');
-const setList = [];
 const reset = false;
-
-//shell.openExternal('file://' + "/Users/jp/Desktop/01 Project/01.als");
+let win;
 
 app.whenReady().then(() => {
 
@@ -20,9 +18,11 @@ app.whenReady().then(() => {
     });
   }
 
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 625,
+    minWidth: 400,
+    minHeight: 625,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -33,20 +33,10 @@ app.whenReady().then(() => {
   win.loadFile('index.html')
   win.webContents.openDevTools()
 
-  storage.has('setList', function(error, hasKey) {
-    if (error) throw error;
-    if (hasKey) {
-      storage.get('setList', function(error, data) {
-        if (error) throw error;
-        if (typeof data !== undefined) {
-          console.log("Previously: " + data.length);
-          win.webContents.on('did-finish-load', function () {
-            win.webContents.send('csv-data', data);
-          });
-        }
-        else console.log("No list previously stored!");
-      });
-    }
+  win.webContents.on('did-finish-load', function () {
+    recoverSetting('setlist', win);
+    recoverSetting('port', win);
+    recoverSetting('channel', win);
   });
 
 })
@@ -55,31 +45,67 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
-ipc.on('ping', (event, args) => {
+ipc.on('save-setting', (event, args) => {
   //do something with args
   event.returnValue = 'Hi, sync reply';
-  console.log(args)
- });
+
+  storage.set(args.setting, args.value, function(error) {
+    if (error) throw error;
+    storage.get(args.setting, function(error, data) {
+      if (error) throw error;
+      console.log(args.setting + " saved as " + data)
+    });
+  });
+  
+});
  
 ipc.on('open-csv', (event, args) => {
+  let setList = [];
   dialog.showOpenDialog({ properties: ['openFile'],
                           filters: [{ name: 'CSV dile',
                           extensions: ['csv'] }]
   }).then(result => {
     fs.createReadStream(result.filePaths[0])
-    .pipe(csv())
-    .on('data', (data) => setList.push(data))
-    .on('end', () => {
-      console.log(setList.length + " sets in list");
-      event.sender.send('csv-data', setList);
-      storage.set('setList', setList, function(error) {
-        if (error) throw error;
-      });
-
+      .pipe(csv())
+      .on('data', (data) => setList.push(data))
+      .on('end', () => {
+        console.log(setList.length + " sets in list");
+        event.sender.send("recover-setting", {key: "setlist", data: setList});
+        storage.set('setList', setList, function(error) {
+          console.log("good saving")
+          if (error) throw error;
+        });
+        console.log("good here");
     });
     //console.log(result.canceled)
-    //console.log(result.filePaths)
+    console.log(result.filePaths[0])
   }).catch(err => {
     console.log(err)
   })
 });
+
+ipc.on('open-set', (event, args) => {
+  var result = "";
+  shell.openExternal('file://' + args); 
+  event.sender.send('open-set-result',result); 
+});
+
+ipc.on('on-top', (event, args) => {
+  win.setAlwaysOnTop(args);
+});
+
+function recoverSetting(key, win) {
+  storage.has(key, function(error, hasKey) {
+    if (error) throw error;
+    if (hasKey) {
+      storage.get(key, function(error, data) {
+        if (error) throw error;
+        if (typeof data !== undefined) {
+          console.log("Stored " + key + ": " + data);
+          win.webContents.send('recover-setting', {key: key, data: data});
+        }
+        else console.log(`No ${key} previously stored!`);
+      });
+    }
+  });
+}

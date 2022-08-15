@@ -1,11 +1,12 @@
-var MIDIout = null;
-var MIDIin = null;
-var MIDIinIndex = 0;
-var MIDIch = 10;
+var MIDIport = null;
+var MIDIportIndex = 0;
+var MIDIch = 1;
 var openCsv = document.getElementById("open-csv");
+var showBigName = document.getElementById("show-big-name");
+var bigName = document.getElementById("big-name-text");
+var openLive = document.getElementById("open-live");
 
 const ipc = require('electron').ipcRenderer; 
-let reply = ipc.sendSync('ping','a string', 10);
 
 if (navigator.requestMIDIAccess) {
     console.log('Browser supports MIDI. Yay!');
@@ -14,41 +15,42 @@ if (navigator.requestMIDIAccess) {
 
 function success(midi) {
 
-    var inList  = document.getElementById("select-midi-in");
-    var chList  = document.getElementById("select-midi-channel");
+    var portList  = document.getElementById("select-midi-in");
+    var channelList  = document.getElementById("select-midi-channel");
     var inputs  = midi.inputs.values();
     var numIns  = 0;
     // outputs is an Iterator
-    if(MIDIch) chList.value = MIDIch;
-    console.log("finding input ports")
-
     for (var input = inputs.next(); input && !input.done; input = inputs.next()) {
         var option = document.createElement("option");
         option.value = input.value.id;
         option.text = input.value.name;
-        //if(selectedIn == input.value.id) option.selected = true;
-        inList.appendChild(option);
+        portList.appendChild(option);
         numIns++;
         console.log(input.value.name)
     }
 
-    inList.addEventListener("change", function(e) {
-        ipc.sendSync('ping', ("MIDI in: " + this.options[this.selectedIndex].text + " selected."), 10);
-        if(this.value != 0) {
-            console.log("MIDI in: " + this.options[this.selectedIndex].text + " selected.");
-        } else {
-            console.log("Internal clock selected.");
-        }
+    portList.addEventListener("change", function(e) {
+        ipc.send('save-setting', {setting: "port", value: this.options[this.selectedIndex].value}, 10);
     });
 
-    if(MIDIinIndex != 0 && MIDIinIndex != null) {
-        console.log("MIDI clock in: " + MIDIin.name);
-        MIDIin.onmidimessage = processMIDIin;
-    } else {
-        console.log("Using internal clock.");
-    }
+    channelList.addEventListener("change", function(e) {
+        ipc.send('save-setting', {setting: "channel", value: this.options[this.selectedIndex].value}, 10);
+        MIDIportIndex = this.options[this.selectedIndex].value;
+        updatePort(MIDIportIndex);
+    });
+
 }
 
+function updatePort (MIDIportIndex) {
+    navigator.requestMIDIAccess().then( (midi) => {
+        MIDIport = midi.inputs.get(MIDIportIndex);
+        if(MIDIportIndex != 0 && MIDIportIndex != null) {
+            MIDIport.onmidimessage = processMIDIin;
+        }
+    },
+    failure
+    );
+}
 
 function processMIDIin(midiMsg) {
     // altStartMessage: used to sync when playback has already started
@@ -56,6 +58,7 @@ function processMIDIin(midiMsg) {
     // 0xB0 & 0x07 = CC, channel 8.
     // PC: 0xC0 - 0xCF
     // Responding to altStartMessage regardless of channels
+    console.log("Some MIDI received")
     var altStartMessage = (midiMsg.data[0] & 240) == 176 &&
                          midiMsg.data[1] == 16 &&
                          midiMsg.data[2] > 63;
@@ -65,24 +68,65 @@ function processMIDIin(midiMsg) {
 
     } else if(midiMsg.data[0] == 248) { // 0xF8 Timing Clock (Sys Realtime)
 
-    } else if((midiMsg.data[0] & 240) == 176 && (midiMsg.data[0] & 15) == MIDIch) { //CC, right channel
+    } else if((midiMsg.data[0] & 240) == 176 &&
+              (midiMsg.data[0] & 15) == MIDIch) { //CC, correct channel
  
+    } else if((midiMsg.data[0] & 240) == 192 &&
+              (midiMsg.data[0] & 15) == MIDIch) { //PC, correct channel
+        console.log("here we are")
+        document.querySelectorAll(".set-row").forEach(row => {
+            var pc = parseInt(row.firstChild.innerText);
+            if(pc == midiMsg.data[1]) {
+                selectRow(row);
+                var location = row.getElementsByTagName('td')[2].innerText;
+                ipc.send('open-set', location);
+            }
+        })
+
     }
      else {
         console.log(midiMsg.data)
     }
 }
 
-function failure(){ console.log("MIDI not supported :(")};
+function failure(){ console.log("MIDI not supported (or error accessing midi) :(")};
 
 openCsv.addEventListener('click', function(e) {
-    ipc.sendSync('open-csv', '', 10);
+    ipc.send('open-csv', '', 10);
 });
 
-ipc.on('csv-data', function (evt, message) {
-    console.log("Received from main:")
-    console.log(message); // Returns: {'SAVED': 'File Saved'}
-    parseCsv(message)
+showBigName.addEventListener('click', function(e) {
+    console.log("toggling")
+    var bn = document.getElementById("big-name");
+    var tp = document.getElementById("top");
+    if(bn.style.display == "none" || bn.style.display == "") {
+        bn.style.display = "flex";
+        tp.style.display = "none";
+        showBigName.innerHTML = "Hide Big Name";
+        ipc.send('on-top',true);
+    } else {
+        bn.style.display = "none";
+        tp.style.display = "flex";
+        showBigName.innerHTML = "Show Big Name";
+        ipc.send('on-top',false);
+    }
+});
+
+
+ipc.on('recover-setting', function (evt, message) {
+    if(message.key == "setlist") {
+        console.log("Setlist loaded...");
+        parseCsv(message.data);
+    }
+    else if (message.key == "port") {
+        document.getElementById("select-midi-in").value = message.data;
+        console.log("changing port to " + message.data);
+        MIDIportIndex = message.data;
+        updatePort(MIDIportIndex);
+    } else if (message.key == "channel") {
+        document.getElementById("select-midi-channel").value = message.data;
+        MIDIch = message.data;
+    }
 });
 
 function parseCsv(data) {
@@ -93,14 +137,47 @@ function parseCsv(data) {
         if(item.location && item.location != "" &&
             item.pc && item.pc != "") {
             let row = table.insertRow();
+            row.classList.add("set-row");
             if(i%2) row.classList.add("grey-row")
             let pc = row.insertCell(0);
+            pc.classList.add("pc-col")
             pc.innerHTML = item.pc;
             let name = row.insertCell(1);
+            name.classList.add("name-col")
             name.innerHTML = item.name;
             let location = row.insertCell(2);
+            location.classList.add("location-col")
             location.innerHTML = item.location;
+            row.addEventListener('click', function(e) {
+                selectRow(row);
+                openLive.classList.add("button-active");
+            });
             i++;
         }
     });
+    //scrollTable();
 }
+
+function selectRow(row) {
+    var newSet = row.getElementsByTagName('td')[1].innerText;
+    bigName.innerHTML = newSet;
+    document.querySelectorAll(".set-row").forEach( elem => {
+        elem.classList.remove("selected-row");
+    });
+    row.classList.add("selected-row");
+}
+
+function scrollTable() {
+    const table = document.getElementById("set-list-body");
+    var rows = table.getElementsByTagName('td');
+    document.addEventListener("keydown", (e) => {
+        e.preventDefault();
+        switch (e.key) {
+        case "ArrowUp": // UP
+
+            break;
+        case "ArrowDown": // DOWN
+            break;
+        }
+    })
+  }

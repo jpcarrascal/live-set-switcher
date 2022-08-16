@@ -31,12 +31,12 @@ function success(midi) {
 
     portList.addEventListener("change", function(e) {
         ipc.send('save-setting', {setting: "port", value: this.options[this.selectedIndex].value}, 10);
+        MIDIportIndex = this.options[this.selectedIndex].value;
+        updatePort(MIDIportIndex);
     });
 
     channelList.addEventListener("change", function(e) {
         ipc.send('save-setting', {setting: "channel", value: this.options[this.selectedIndex].value}, 10);
-        MIDIportIndex = this.options[this.selectedIndex].value;
-        updatePort(MIDIportIndex);
     });
 
 }
@@ -58,7 +58,6 @@ function processMIDIin(midiMsg) {
     // 0xB0 & 0x07 = CC, channel 8.
     // PC: 0xC0 - 0xCF
     // Responding to altStartMessage regardless of channels
-    console.log("Some MIDI received")
     var altStartMessage = (midiMsg.data[0] & 240) == 176 &&
                          midiMsg.data[1] == 16 &&
                          midiMsg.data[2] > 63;
@@ -73,19 +72,19 @@ function processMIDIin(midiMsg) {
  
     } else if((midiMsg.data[0] & 240) == 192 &&
               (midiMsg.data[0] & 15) == MIDIch) { //PC, correct channel
-        console.log("here we are")
         document.querySelectorAll(".set-row").forEach(row => {
             var pc = parseInt(row.firstChild.innerText);
             if(pc == midiMsg.data[1]) {
                 selectRow(row);
                 var location = row.getElementsByTagName('td')[2].innerText;
+                console.log("Opening " + location)
                 ipc.send('open-set', location);
             }
         })
 
     }
      else {
-        console.log(midiMsg.data)
+        
     }
 }
 

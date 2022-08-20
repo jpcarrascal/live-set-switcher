@@ -9,6 +9,8 @@ const csv = require('csv-parser');
 const fs = require('fs');
 const reset = false;
 const debug = false;
+let width = 400;
+if (debug) width = 1200;
 let win;
 
 
@@ -46,7 +48,7 @@ app.whenReady().then(() => {
   }
 
   win = new BrowserWindow({
-    width: 400,
+    width: width,
     height: 625,
     minWidth: 400,
     minHeight: 625,
@@ -100,10 +102,8 @@ ipc.on('open-csv', (event, args) => {
         console.log(setList.length + " sets in list");
         event.sender.send("recover-setting", {key: "setlist", data: setList});
         storage.set('setList', setList, function(error) {
-          console.log("good saving")
           if (error) throw error;
         });
-        console.log("good here");
     });
     //console.log(result.canceled)
     console.log(result.filePaths[0])
@@ -113,6 +113,7 @@ ipc.on('open-csv', (event, args) => {
 });
 
 ipc.on('open-set', (event, args) => {
+  console.log(args)
   var result = "";
   shell.openExternal('file://' + args); 
   event.sender.send('open-set-result',result); 
@@ -129,6 +130,7 @@ function recoverSetting(key, win) {
       storage.get(key, function(error, data) {
         if (error) throw error;
         if (typeof data !== undefined) {
+          //console.log("Recoveing [" + key + "]: " + data)
           win.webContents.send('recover-setting', {key: key, data: data});
         }
         else console.log(`No ${key} previously stored!`);

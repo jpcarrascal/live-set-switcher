@@ -178,6 +178,14 @@ button {
     margin-bottom: 0.5em;
 }
 
+button:hover {
+    background-color: rgb(68, 134, 225);
+}
+
+button:active {
+    background-color: rgb(150, 150, 150);
+}
+
 .button-active {
     background-color: rgb(48, 114, 206);
 }

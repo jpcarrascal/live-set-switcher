@@ -91,7 +91,12 @@ function processMIDIin(midiMsg) {
 function failure(){ console.log("MIDI not supported (or error accessing midi) :(")};
 
 openCsv.addEventListener('click', function(e) {
-    ipc.send('open-csv', '', 10);
+    ipc.send('open-csv', '');
+});
+
+openLive.addEventListener('click', function(e) {
+    let loc = bigName.getAttribute("location");
+    if(loc && loc !="") ipc.send('open-set', loc);
 });
 
 showBigName.addEventListener('click', function(e) {
@@ -159,7 +164,9 @@ function parseCsv(data) {
 
 function selectRow(row) {
     var newSet = row.getElementsByTagName('td')[1].innerText;
+    var newLoc = row.getElementsByTagName('td')[2].innerText;
     bigName.innerHTML = newSet;
+    bigName.setAttribute("location", newLoc);
     document.querySelectorAll(".set-row").forEach( elem => {
         elem.classList.remove("selected-row");
     });

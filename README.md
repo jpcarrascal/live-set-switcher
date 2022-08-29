@@ -1,6 +1,6 @@
 # Ableton Live Set Switcher
 
-![Alt text](https://github.com/jpcarrascal/live-set-switcher/blob/main/live_set_switcher.png?raw=true "Optional Title")
+![Screen shot](https://github.com/jpcarrascal/live-set-switcher/blob/main/live_set_switcher.png?raw=true "Screen shot")
 
 You'll find two versions in this repository:
 - macOS (Requires MacOs 12 / Monterey)
@@ -15,9 +15,9 @@ Create a CSV file with columns `pc,name,location`, where:
 
 Then import it in the app.
 
-Additional feature: big screen to read the name of the currently selected Live set from afar.
+Additional feature: "Big Text" screen to read the name of the currently selected Live set from afar.
 
-![Alt text](https://github.com/jpcarrascal/live-set-switcher/blob/main/big_screen.jpg?raw=true "Optional Title")
+![Big Text](https://github.com/jpcarrascal/live-set-switcher/blob/main/big_screen.jpg?raw=true "Big Text")
 
 ## How to deal with "Save?" or "Stop?" dialogs
 

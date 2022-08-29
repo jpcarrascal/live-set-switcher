@@ -21,7 +21,7 @@ When you have unsaved changes and you instruct Live to open a different set, it 
 
 [Chapelier Fou](https://chapelierfou.bandcamp.com/), an amazing French musician, came up with an interesting solution. He created a Max For Live device that detects the "Save" dialog and choses the "Do not save" option automatically. I modified it to also detect the "Stop" dialog and automatically stop the set. It is in the Max4Live directory in this repo.
 
-To use the device, drop it anywhere in your Live set. For a full performance without interruptions, you should import the device into _every set_ that you include in your playlist.
+To use the device, drop it anywhere in your Live set (I usually drop it in the master bus so I can easily find it later). For a full performance without interruptions, you should import the device into _every set_ that you include in your playlist.
 
 ## I like this! How can I show appreciation / contribute?
 

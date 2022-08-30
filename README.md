@@ -23,7 +23,7 @@ Additional feature: "Big Text" screen to read the name of the currently selected
 
 When you have unsaved changes and you instruct Live to open a different set, it will show a dialog asking if you want to save the current one. Similarly, if your current set is playing, it will ask if you want to stop first. While these are great mechanisms to prevent you from disaster, they break the flow of a live situation, as you are forced to divert your attention to your computer screen and keyboard.
 
-[Chapelier Fou](https://chapelierfou.bandcamp.com/), an amazing French musician, came up with an interesting solution. He created a Max For Live device that detects the "Save" dialog and choses the "Do not save" option automatically. I modified it to also detect the "Stop" dialog and automatically stop the set. Download it from [here](https://github.com/jpcarrascal/live-set-switcher/blob/main/Max4Live/DO_NOT_SAVE_OR_STOP.amxd?raw=true).
+[Chapelier Fou](https://chapelierfou.bandcamp.com/), an amazing French musician, came up with an interesting solution. He created a Max For Live device that detects the "Save" dialog and choses the "Do not save" option automatically. I modified it to also detect the "Stop" dialog and automatically stop the set. Download the device from [here](https://github.com/jpcarrascal/live-set-switcher/blob/main/Max4Live/DO_NOT_SAVE_OR_STOP.amxd?raw=true).
 
 To use the device, drop it anywhere in your Live set (I usually drop it in the master bus so I can easily find it later). For a full performance without interruptions, you should import the device into _every set_ that you include in your playlist.
 

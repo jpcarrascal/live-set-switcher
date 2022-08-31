@@ -3,8 +3,8 @@
 ![Screen shot](https://github.com/jpcarrascal/live-set-switcher/blob/main/live_set_switcher.png?raw=true "Screen shot")
 
 You'll find two versions in this repository:
-- macOS (Requires MacOs 12 / Monterey)
-- Electron (WIP, eventually compatible con macOS and Windows)
+- Electron (MacOS and Windows)
+- MacOS native (Requires MacOs 12 / Monterey)
 
 This app will listen to MIDI Program Change (PC) messages coming in through the specified Port and MIDI channel and will open Ableton Live sets from a playlist, according to incoming PC values.
 

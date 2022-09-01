@@ -130,7 +130,7 @@ function recoverSetting(key, win) {
       storage.get(key, function(error, data) {
         if (error) throw error;
         if (typeof data !== undefined) {
-          //console.log("Recoveing [" + key + "]: " + data)
+          //console.log("Recovering [" + key + "]: " + data)
           win.webContents.send('recover-setting', {key: key, data: data});
         }
         else console.log(`No ${key} previously stored!`);

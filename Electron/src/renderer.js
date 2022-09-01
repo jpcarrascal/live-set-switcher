@@ -30,13 +30,13 @@ function success(midi) {
     }
 
     portList.addEventListener("change", function(e) {
-        ipc.send('save-setting', {setting: "port", value: this.options[this.selectedIndex].value}, 10);
         MIDIportIndex = this.options[this.selectedIndex].value;
         updatePort(MIDIportIndex);
+        ipc.send('save-setting', {setting: "port", value: MIDIportIndex});
     });
 
     channelList.addEventListener("change", function(e) {
-        ipc.send('save-setting', {setting: "channel", value: this.options[this.selectedIndex].value}, 10);
+        ipc.send('save-setting', {setting: "channel", value: this.options[this.selectedIndex].value});
     });
 
 }
@@ -100,7 +100,6 @@ openLive.addEventListener('click', function(e) {
 });
 
 showBigName.addEventListener('click', function(e) {
-    console.log("toggling")
     var bn = document.getElementById("big-name");
     var tp = document.getElementById("top");
     if(bn.style.display == "none" || bn.style.display == "") {
@@ -118,13 +117,13 @@ showBigName.addEventListener('click', function(e) {
 
 
 ipc.on('recover-setting', function (evt, message) {
+    console.log("changing " + message.key + " to " + message.data);
     if(message.key == "setlist") {
         console.log("Setlist loaded...");
         parseCsv(message.data);
     }
     else if (message.key == "port") {
         document.getElementById("select-midi-in").value = message.data;
-        console.log("changing port to " + message.data);
         MIDIportIndex = message.data;
         updatePort(MIDIportIndex);
     } else if (message.key == "channel") {
@@ -173,17 +172,46 @@ function selectRow(row) {
     row.classList.add("selected-row");
 }
 
-function scrollTable() {
+function scrollTable(direction) {
     const table = document.getElementById("set-list-body");
-    var rows = table.getElementsByTagName('td');
-    document.addEventListener("keydown", (e) => {
-        e.preventDefault();
-        switch (e.key) {
-        case "ArrowUp": // UP
-
-            break;
-        case "ArrowDown": // DOWN
+    let rows = table.getElementsByTagName('tr');
+    let selectedRow = -1;
+    let nextIndex = -1;
+    for(let i=0; i<rows.length; i++) {
+        if(rows[i].classList.contains("selected-row")) {
+            selectedRow = i;
             break;
         }
-    })
-  }
+    }
+    if(direction == 'next') nextIndex = selectedRow + 1;
+    else nextIndex = selectedRow - 1;
+    if(nextIndex >= 0 && nextIndex < rows.length) {
+        selectRow(rows[nextIndex]);
+    }
+    console.log(nextIndex);
+}
+
+// Keyboard input:
+
+
+document.addEventListener("keydown", (e) => {
+    switch (e.key) {
+        case 'Enter':
+            e.preventDefault();
+            console.log("entr clicked")
+            openLive.click();
+            break;
+        case 'Escape':
+            e.preventDefault();
+            showBigName.click();
+            break;
+        case 'ArrowUp':
+            e.preventDefault();
+            scrollTable('prev');
+            break;
+        case 'ArrowDown':
+            e.preventDefault();
+            scrollTable('next');
+            break;
+    }
+})

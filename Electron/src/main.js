@@ -1,5 +1,6 @@
 const { app, BrowserWindow, dialog, Menu } = require('electron');
 const electron = require('electron');
+var screenElectron = electron.screen;
 const storage = require('electron-json-storage');
 const ipc = require('electron').ipcMain;
 const shell = require('electron').shell;
@@ -11,8 +12,9 @@ const reset = false;
 const debug = false;
 let width = 400;
 if (debug) width = 1200;
+let height = 625;
 let win;
-
+let maxWidth;
 
 const isMac = process.platform === 'darwin'
 
@@ -47,9 +49,12 @@ app.whenReady().then(() => {
     });
   }
 
+  var mainScreen = screenElectron.getPrimaryDisplay();
+  maxWidth = mainScreen.size.width;
+
   win = new BrowserWindow({
     width: width,
-    height: 625,
+    height: height,
     minWidth: 400,
     minHeight: 625,
     webPreferences: {
@@ -121,6 +126,13 @@ ipc.on('open-set', (event, args) => {
 
 ipc.on('on-top', (event, args) => {
   win.setAlwaysOnTop(args);
+  if(args) {
+    win.setPosition(0, 0);
+    win.setSize(maxWidth, height, true);
+  } else {
+    win.setSize(width, height, true);
+    //win.setPosition(0, 0);
+  }
 });
 
 function recoverSetting(key, win) {

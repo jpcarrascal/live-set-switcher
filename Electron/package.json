@@ -1,11 +1,11 @@
 {
   "name": "live-set-switcher-electron",
-  "version": "0.1.1",
-  "description": "Ableton Live Set Switcher",
+  "version": "0.1.2",
+  "description": "Set Switcher for Ableton Live",
   "main": "src/main.js",
   "build": {
 		"appId": "com.jpcarrascal.live-set-switcher",
-		"productName": "Ableton Live Set Switcher",
+		"productName": "Live Set Switcher",
 		"mac": {
 			"category": "public.app-category.music"
 		},

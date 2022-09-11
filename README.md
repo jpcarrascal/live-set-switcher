@@ -1,5 +1,5 @@
 # Ableton Live Set Switcher
-_[Do you want to beta-test this? Download it from the [releases page](https://github.com/jpcarrascal/live-set-switcher/releases)]_
+_[Download the app from the [releases page](https://github.com/jpcarrascal/live-set-switcher/releases)]_
 
 ![Screen shot](https://github.com/jpcarrascal/live-set-switcher/blob/main/live_set_switcher.png?raw=true "Screen shot")
 

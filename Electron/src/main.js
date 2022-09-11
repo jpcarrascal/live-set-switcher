@@ -57,6 +57,7 @@ app.whenReady().then(() => {
     height: height,
     minWidth: 400,
     minHeight: 625,
+    fullscreenable: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -64,7 +65,8 @@ app.whenReady().then(() => {
     titleBarStyle: 'hidden-inset'
   })
 
-  win.setMenu(null);;
+  win.setMenu(null);
+  
   win.loadFile(path.join(__dirname, 'index.html'))
   if (debug) win.webContents.openDevTools()
 
@@ -127,11 +129,9 @@ ipc.on('open-set', (event, args) => {
 ipc.on('on-top', (event, args) => {
   win.setAlwaysOnTop(args);
   if(args) {
-    win.setPosition(0, 0);
-    win.setSize(maxWidth, height, true);
+    win.maximize()
   } else {
-    win.setSize(width, height, true);
-    //win.setPosition(0, 0);
+    win.unmaximize()
   }
 });
 

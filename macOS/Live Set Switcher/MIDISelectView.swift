@@ -6,6 +6,7 @@
 
 import SwiftUI
 import MIDIKit
+import CoreAudioKit
 
 struct MIDIInSelectionView: View {
     
@@ -30,23 +31,30 @@ struct MIDIInSelectionView: View {
             }
             
             VStack {
-            
-                Picker("Port", selection: $midiInSelectedID) {
-                    Text("None")
-                        .tag(0 as MIDI.IO.UniqueID)
-                    
-                    if midiInSelectedID != 0,
-                       !midiHelper.isOutputPresentInSystem(uniqueID: midiInSelectedID)
-                    {
-                        Text("⚠️ " + midiInSelectedDisplayName)
-                            .tag(midiInSelectedID)
-                            .foregroundColor(.secondary)
+                HStack {
+                    Picker("Port", selection: $midiInSelectedID) {
+                        Text("None")
+                            .tag(0 as MIDI.IO.UniqueID)
+                        
+                        if midiInSelectedID != 0,
+                           !midiHelper.isOutputPresentInSystem(uniqueID: midiInSelectedID)
+                        {
+                            Text("⚠️ " + midiInSelectedDisplayName)
+                                .tag(midiInSelectedID)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        ForEach(midiManager.endpoints.outputs) {
+                            Text($0.displayName)
+                                .tag($0.uniqueID)
+                        }
                     }
                     
-                    ForEach(midiManager.endpoints.outputs) {
-                        Text($0.displayName)
-                            .tag($0.uniqueID)
-                    }
+                    Button("Bluetooth MIDI") { // Open Bluetooth MIDI pane
+                        let windowController = CABTLEMIDIWindowController()
+                        windowController.showWindow(self)
+                    }//.keyboardShortcut(.cancelAction)
+                    
                 }
                 
                 Picker("Channel", selection: $midiChannelSelectedID) {
@@ -55,6 +63,7 @@ struct MIDIInSelectionView: View {
                         Text("\($0+1)").tag(Int32($0))
                     }
                 }
+                
             }//.padding([.leading, .trailing], 60)
         }
         

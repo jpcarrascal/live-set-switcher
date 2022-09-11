@@ -76,7 +76,6 @@ struct ContentView: View {
                 } else {
                     Text("Show Big Name")
                 }
-                
             }.keyboardShortcut(.cancelAction)
             
         } //Hstack
@@ -99,10 +98,12 @@ struct ContentView: View {
         if(state) {
             for window in NSApplication.shared.windows {
                 window.level = .floating
+                window.zoom(nil)
             }
         } else {
             for window in NSApplication.shared.windows {
                 window.level = .normal
+                window.zoom(nil)
             }
         }
 

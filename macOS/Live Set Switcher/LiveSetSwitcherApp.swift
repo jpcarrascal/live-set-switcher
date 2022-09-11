@@ -49,9 +49,17 @@ struct LiveSetSwitcher: App {
             .environmentObject(midiHelper)
             .environmentObject(setList)
             .frame(minWidth: 400, minHeight: 600, alignment: .center)
+            //.fixedSize(horizontal: false, vertical: false)
+            //.frame(width: 400, height: 600, alignment: .center)
             .onAppear {
                 NSWindow.allowsAutomaticWindowTabbing = false
             }
+            .onReceive(NotificationCenter.default.publisher(for: NSApplication.willUpdateNotification), perform: { _ in
+                for window in NSApplication.shared.windows {
+                    window.standardWindowButton(.zoomButton)?.isEnabled = false
+                    window.collectionBehavior = .fullScreenAuxiliary
+                }
+            })
         }
         
         .onChange(of: midiInSelectedID) {

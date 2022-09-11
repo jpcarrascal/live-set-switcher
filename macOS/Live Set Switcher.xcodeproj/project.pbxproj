@@ -72,8 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				E8A9491B289BA2F900E17B6F /* Live-Set-Switcher-Info.plist */,
-				E80AA60C289E59910020E62E /* AppDelegate.swift */,
 				E860548F288C4B0800A98189 /* LiveSetSwitcherApp.swift */,
+				E80AA60C289E59910020E62E /* AppDelegate.swift */,
 				E86054A1288C5C3700A98189 /* MIDISelectView.swift */,
 				E8605491288C4B0800A98189 /* ContentView.swift */,
 				E86054A5288DBC9D00A98189 /* SetSelectView.swift */,
@@ -317,6 +317,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Live-Set-Switcher-Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = true;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -345,6 +346,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Live-Set-Switcher-Info.plist";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = true;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -53,7 +53,7 @@ struct MIDIInSelectionView: View {
                     Button("Bluetooth MIDI") { // Open Bluetooth MIDI pane
                         let windowController = CABTLEMIDIWindowController()
                         windowController.showWindow(self)
-                    }//.keyboardShortcut(.cancelAction)
+                    }
                     
                 }
                 
